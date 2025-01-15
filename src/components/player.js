@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Player({ playerName, playerValue }) {
+export default function Player({ playerName, playerValue,player1Callback }) {
     
     const [editOrSave, changeEditOrSave] = useState("Edit");
     const [disabled, changeEditDisabled] = useState(true); 
@@ -11,6 +11,7 @@ export default function Player({ playerName, playerValue }) {
             return prevState === "Edit" ? "Save" : "Edit"
         });
         changeEditDisabled(!disabled);
+        player1Callback(inputValue);
     }
 
     return (

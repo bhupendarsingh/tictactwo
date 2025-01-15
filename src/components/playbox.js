@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-export default function PlayBox() {
-
+export default function PlayBox({player1, player2}) {
     const [playerTurn, changePlayer] = useState("X")
     const [gameArray, markclick] = useState([
         ["-", "-", "-"],
@@ -9,6 +8,13 @@ export default function PlayBox() {
         ["-", "-", "-"]]);
 
     const [checkBoxOff, setCheckBoxOff] = useState(false);
+    
+    let activePlayerName;
+    if(playerTurn==="X"){
+        activePlayerName= player1;
+    }
+    else{activePlayerName=player2}
+    
     function updateCheckBoxOff() {
         setCheckBoxOff(!checkBoxOff);
     }
@@ -21,7 +27,7 @@ export default function PlayBox() {
         changePlayer("X");
     }
     function youWon(arrayDummy) {
-        alert(`${playerTurn} has won`);
+        alert(`${activePlayerName} has won`);
         updateCheckBoxOff();
         markclick(arrayDummy)
         return;
